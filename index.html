@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>calculator</title>
+    <link rel="stylesheet" type="text/css" href="calculator.css">
+    <script>
+        var disp = "";
+        var pre = 0;
+        var result = "";
+        var opt = '+';
+        function display(val) {
+            disp += val;
+            document.getElementById("res").value = disp;
+        }
+        function operator(opt1) {
+        
+
+            switch (opt) {
+                case '+':
+                    result = parseFloat(parseFloat(pre) + parseFloat(disp));
+                    console.log(result);
+                    break;
+                case '-':
+                    result = parseFloat(parseFloat(pre) - parseFloat(disp));
+                    break;
+                case '*':
+                    result = parseFloat(parseFloat(pre) * parseFloat(disp));
+                    break;
+                case '/':
+                    result = parseFloat(parseFloat(pre) / parseFloat(disp));
+                    break;
+                case '=':
+                    result = pre;
+                    break;
+                default:
+                    break;
+            }
+            document.getElementById("res").value = result + opt1;
+            pre = result;
+            disp = "";
+            opt = opt1;
+        }
+        function clr() {
+            document.getElementById("res").value = " ";
+            disp = "";
+            pre = 0;
+            opt = "+";
+        }
+        function back() 
+		{
+			var value = document.getElementById("res").value;
+			document.getElementById("res").value = value.substr(0, value.length - 1);
+            disp=disp.substr(0,disp.length - 1);
+            console.log(disp);
+            // opt = opt.substr(0,opt.length-1);
+		}
+        // function back() {
+        //     //    debugger;
+        //     var x = document.getElementById("res").value;
+        //     x = x.slice(0, -1);
+        //     disp = disp.toString();
+        //     disp = disp.slice(0, -1);
+        //     opt = opt.slice(0, -1);
+        //     disp = parseFloat(disp);
+        //     pre = pre.toString();
+        //     pre = pre.slice(0, -1);
+        //     pre = parseFloat(pre);
+        //     document.getElementById("res").value = x;
+        //     disp = x;
+        //     console.log(disp);
+        // }
+        function equal() {
+            document.getElementById("res").value = result;
+        }
+    // function back(){
+    // var a=[];
+    // while(pre>1){
+    // var b=pre%10;
+    // a.push(b);
+    // console.log(a);
+    // pre=parseInt(pre/10);
+    // }
+    // a.splice (0, 1);
+    // a=parseFloat(a);
+    // document.getElementById("res").value=a;
+    // }
+    </script>
+</head>
+
+<body>
+    <table id="table">
+        <tr>
+            <td colspan="3"><input type="text" id="res" name="textbox" readonly /></td>
+            <td><input id="clear" type="button" value="clear" onclick="clr()" /> </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="display('1')" /> </td>
+            <td><input type="button" value="2" onclick="display('2')" /> </td>
+            <td><input type="button" value="3" onclick="display('3')" /> </td>
+            <td><input type="button" value="/" onclick="operator('/')" /> </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="display('4')" /> </td>
+            <td><input type="button" value="5" onclick="display('5')" /> </td>
+            <td><input type="button" value="6" onclick="display('6')" /> </td>
+            <td><input type="button" value="-" onclick="operator('-')" /> </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" onclick="display('7')" /> </td>
+            <td><input type="button" value="8" onclick="display('8')" /> </td>
+            <td><input type="button" value="9" onclick="display('9')" /> </td>
+            <td><input type="button" value="+" onclick="operator('+')" /> </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="." onclick="display('.')" /> </td>
+            <td><input type="button" value="0" onclick="display('0')" /> </td>
+            <td><input type="button" value="=" onclick="operator('='); equal()" /> </td>
+            <td><input type="button" value="*" onclick="operator('*')" /> </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="<-" onclick="back();"> </td>
+        </tr>
+    </table>
+</body>
+
+</html>
